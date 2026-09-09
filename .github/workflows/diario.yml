@@ -1,0 +1,29 @@
+name: Revision Diaria de Caducidades
+
+# Se ejecuta automáticamente todos los días a las 13:00 UTC (8:00 AM hora Ecuador/Colombia/Perú)
+on:
+  schedule:
+    - cron: '0 13 * * *'
+  workflow_dispatch: # Permite probarlo manualmente desde la web de GitHub
+
+jobs:
+  notificar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v3
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Instalar Firebase Admin
+        run: npm install firebase-admin
+
+      - name: Ejecutar Script de Notificación
+        env:
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node notificar.js
