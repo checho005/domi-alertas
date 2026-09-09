@@ -88,9 +88,9 @@ async function revisarCaducidades() {
   // Si se encontraron elementos por vencer, se arma el reporte
   if (alertas.length > 0) {
     const mensajeFinal = `🔔 <b>ALERTA DE CADUCIDADES</b> 🔔\n\n` +
-      `Se encontraron los siguientes servicios próximos a vencer o vencidos:\n\n` +
+      `Se encontraron los siguientes servicios próximos a vencer:\n\n` +
       alertas.join('\n') +
-      `\n<i>Revisa tu panel de Domi Alertas.</i>`;
+      `\n<i>Revisa el panel de Domi Alertas. El link para revisión es: https://domi-alertas.web.app/ </i>`;
     
     await enviarTelegram(mensajeFinal);
   } else {
