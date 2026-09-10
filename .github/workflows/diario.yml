@@ -3,7 +3,7 @@ name: Revision Diaria de Caducidades
 # Se ejecuta automáticamente todos los días a las 13:00 UTC (8:00 AM hora Ecuador/Colombia/Perú)
 on:
   schedule:
-    - cron: '*/3 * * * *'
+    - cron: '*/6 * * * *'
   workflow_dispatch: # Permite probarlo manualmente desde la web de GitHub
 
 jobs:
